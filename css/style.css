@@ -315,6 +315,8 @@ a:focus {
 
 .welcome_section .detail-box {
   margin-top: 45px;
+  margin-left: 200px;
+    margin-right: 200px;
 }
 
 .welcome_section .detail-box a {

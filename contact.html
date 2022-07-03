@@ -25,7 +25,34 @@
   <link href="css/responsive.css" rel="stylesheet"/>
   <!-- my.js for form -->
   <link href="js/my.js" rel="javascript"/>
+  <!--Firebase Libraries-->
+
 </head>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDU-Pw5HIZ2hIy38flZj82e3Mv7MJvNw6M",
+    authDomain: "dragonware-fc292.firebaseapp.com",
+    projectId: "dragonware-fc292",
+    storageBucket: "dragonware-fc292.appspot.com",
+    messagingSenderId: "917809028325",
+    appId: "1:917809028325:web:d208c3634ee09fae6c880c",
+    measurementId: "G-BT5GVFCG9Q"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+</script>
 
 <body class="sub_page">
   <div class="hero_area">
@@ -101,37 +128,37 @@
       </p>
     </div>
     <div class="container">
-      <form id="form">
+      <div id="form">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputName4">Name</label>
-            <input type="text" class="form-control contact_input" id="inputName4" name="name" value="name"/>
+            <input type="text" class="form-control contact_input" id="name" name="name"/>
           </div>
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="text" class="form-control contact_input" id="inputEmail4" name="email"/>
+            <input type="text" class="form-control contact_input" id="email" name="email"/>
           </div>
 
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputBudget4">Budget</label>
-            <input type="text" class="form-control contact_input" name="budget" id="inputBudget4"/>
+            <input type="text" class="form-control contact_input" name="budget" id="budget"/>
           </div>
           <div class="form-group col-md-6">
             <label for="inputRequirement4">Requirement </label>
-            <input type="text" class="form-control contact_input" name="requirement" id="inputRequirement4"/>
+            <input type="text" class="form-control contact_input" name="requirement" id="requirement"/>
           </div>
 
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputNumber4">Phone</label>
-            <input type="tel" class="form-control contact_input" name="phone" id="inputNumber4"/>
+            <input type="tel" class="form-control contact_input" name="phone" id="phone"/>
           </div>
           <div class="form-group col-md-6">
             <label for="inputState">Service</label>
-            <select id="inputState" class="form-control contact_input" name="service">
+            <select class="form-control contact_input" name="service" id="service">
               <option>Android App Development</option>
               <option>Web Development</option>
               <option>UI/UX Design</option>
@@ -141,17 +168,51 @@
         </div>
         <div class="form-group">
           <label for="inputMessage">Description</label>
-          <textarea type="text" class="form-control contact_input " name="description" id="inputMessage" placeholder=""></textarea>
+          <textarea type="text" class="form-control contact_input " name="description" id="message" placeholder=""></textarea>
         </div>
     </div>
 
     <div class="d-flex justify-content-center">
-      <button type="submit" class="">Send</button>
+      <button class="" id="send">Send</button>
     </div>
-    </form>
+  </div>
    
   </section>
+<!--  <script type="module">
 
+  // These samples are intended for Web so this import would normally be
+// done in HTML however using modules here is more convenient for
+// ensuring sample correctness offline.
+import firebase from "firebase/app";
+import "firebase/database";
+
+function getReference() {
+  // [START rtdb_get_reference]
+  var database = firebase.database();
+  // [END rtdb_get_reference]
+}
+ </script> -->
+  <script>
+
+  
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value;
+    let budget = document.getElementById('budget').value;
+    let requirement = document.getElementById('requirement').value;
+    let service = document.getElementById('service').value;
+    let desciption = document.getElementById('message').value;
+    console.log(name,email,phone,budget,requirement,service,desciption,'sent');
+ 
+    let send = document.getElementById('send');
+      send.onclick = function(){
+        var starCountRef = getDatabase().ref('/' + postId + '/starCount');
+starCountRef.on('value', (snapshot) => {
+  const data = snapshot.val();
+  updateStarCount(postElement, data);
+});
+      }
+  </script>
 
   <!-- end contact section -->
  
@@ -305,7 +366,14 @@
     <!-- footer section -->
   </div>
 
-
+  
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
+
+                          
+<script type='text/javascript'>
+  (function(I, L, T, i, c, k, s) {if(I.iticks) return;I.iticks = {host:c, settings:s, clientId:k, cdn:L, queue:[]};var h = T.head || T.documentElement;var e = T.createElement(i);var l = I.location;e.async = true;e.src = (L||c)+'/client/inject-v2.min.js';h.insertBefore(e, h.firstChild);I.iticks.call = function(a, b) {I.iticks.queue.push([a, b]);};})(window, 'https://cdn-v1.intelliticks.com/prod/common', document, 'script', 'https://app.intelliticks.com', 'anzen4z2axKLu3quN_c', {});
+</script>
+                  
+
 </body></html>
