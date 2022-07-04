@@ -52,6 +52,53 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
+  // import database
+  import {getDatabase, ref, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+  const db = getDatabase();
+  console.log(db);
+
+  // getting values
+
+
+    // console.log(name,email,phone,budget,requirement,service,desciption,'sent');
+    
+    let postId = 1;
+    let send = document.getElementById('send');
+    /* send.onclick = function(){
+      console.log('button clicked');
+      var star *//* CountRef = getDatabase().ref('/' + postId + '/starCount');
+      starCountRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        updateStarCount(postElement, data);
+        }); */
+
+    let userId=1;
+    send.onclick =  function writeUserData() {
+      let name = document.getElementById('name').value;
+      let email = document.getElementById('email').value;
+      let phone = document.getElementById('phone').value;
+      let budget = document.getElementById('budget').value;
+      let requirement = document.getElementById('requirement').value;
+      let service = document.getElementById('service').value;
+      let desciption = document.getElementById('message').value;
+
+    // write data
+    set(ref(db, 'quotations/' + userId), {
+      name: name,
+      email: email,
+      service : service,
+      budget : budget,
+      requirement: requirement,
+      phone: phone,
+      desciption: desciption
+      });
+      console.log('data sent'); 
+
+      userId++;
+    }
+      
+
 </script>
 
 <body class="sub_page">
@@ -178,41 +225,7 @@
   </div>
    
   </section>
-<!--  <script type="module">
 
-  // These samples are intended for Web so this import would normally be
-// done in HTML however using modules here is more convenient for
-// ensuring sample correctness offline.
-import firebase from "firebase/app";
-import "firebase/database";
-
-function getReference() {
-  // [START rtdb_get_reference]
-  var database = firebase.database();
-  // [END rtdb_get_reference]
-}
- </script> -->
-  <script>
-
-  
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let phone = document.getElementById('phone').value;
-    let budget = document.getElementById('budget').value;
-    let requirement = document.getElementById('requirement').value;
-    let service = document.getElementById('service').value;
-    let desciption = document.getElementById('message').value;
-    console.log(name,email,phone,budget,requirement,service,desciption,'sent');
- 
-    let send = document.getElementById('send');
-      send.onclick = function(){
-        var starCountRef = getDatabase().ref('/' + postId + '/starCount');
-starCountRef.on('value', (snapshot) => {
-  const data = snapshot.val();
-  updateStarCount(postElement, data);
-});
-      }
-  </script>
 
   <!-- end contact section -->
  
