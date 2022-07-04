@@ -56,7 +56,7 @@
   // console.log(db);
 
   let dbref = ref(db);
-  let recordNumber = 2;
+  let recordNumber = 1;
 
   get(child(dbref,"quotations/"+recordNumber)).then((snapshot) => {
     if(snapshot.exists()){
@@ -67,11 +67,7 @@
     let output = document.getElementById('row');
     // console.log(output);
        
-        var tr = document.createElement('tr');
-        var tdName = document.createElement('td');
-        tdName.innerHTML = data.name;
-        tr.innerHTML = tdName;
-        console.log(tr);
+       
         
     output.children[0].innerHTML = recordNumber;
     output.children[1].innerHTML = data.name;
@@ -82,8 +78,7 @@
     output.children[7].innerHTML = data.service;
     output.children[2].innerHTML = data.description;
     recordNumber++;
-      let tableBody = document.getElementById('tablebody');
-      tableBody.append(newEntry);
+     
     } 
   }).catch((e)=>{console.log(e)});
   
