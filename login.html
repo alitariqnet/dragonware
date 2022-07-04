@@ -55,34 +55,45 @@
   const db = getDatabase();
   // console.log(db);
 
-  let dbref = ref(db);
-  let recordNumber = 1;
+  let dbref = ref(db);for (let index = 1; index <= 20; index++) {
 
-  get(child(dbref,"quotations/"+recordNumber)).then((snapshot) => {
+  get(child(dbref,"quotations/"+index)).then((snapshot) => {
     if(snapshot.exists()){
     var data = snapshot.val();
-      console.log('try: ',recordNumber);
-    // console.log('data',data);
-    // output.innerHTML = data;
-    let output = document.getElementById('row');
-    // console.log(output);
-       
-       
-        
-    output.children[0].innerHTML = recordNumber;
-    output.children[1].innerHTML = data.name;
-    output.children[2].innerHTML = data.phone;
-    output.children[3].innerHTML = data.email;
-    output.children[4].innerHTML = data.budget;
-    output.children[5].innerHTML = data.requirement;
-    output.children[6].innerHTML = data.service;
-    output.children[7].innerHTML = data.description;
-    recordNumber++;
-     
+      console.log('inside if and recordNumber : ',index);
+      let tableBody = document.getElementById('tablebody');
+      console.log(tableBody);
+      let tableRow = document.createElement('tr');
+        console.log(tableRow);
+      let tableCol1 = document.createElement('td');
+      tableCol1.innerHTML = index;
+        console.log(tableCol1);
+      let tableCol2 = document.createElement('td');
+      tableCol2.innerHTML = data.name;
+      let tableCol3 = document.createElement('td');
+      tableCol3.innerHTML = data.phone;
+      let tableCol4 = document.createElement('td');
+      tableCol4.innerHTML = data.email;
+      let tableCol5 = document.createElement('td');
+      tableCol5.innerHTML = data.budget;
+      let tableCol6 = document.createElement('td');
+      tableCol6.innerHTML = data.requirement;
+      let tableCol7 = document.createElement('td');
+      tableCol7.innerHTML = data.service;
+      let tableCol8 = document.createElement('td');
+      tableCol8.innerHTML = data.description;
+        tableRow.append(tableCol1);
+        tableRow.append(tableCol2);
+        tableRow.append(tableCol3);
+        tableRow.append(tableCol4);
+        tableRow.append(tableCol5);
+        tableRow.append(tableCol6);
+        tableRow.append(tableCol7);
+        tableRow.append(tableCol8);
+        tableBody.append(tableRow);
     } 
   }).catch((e)=>{console.log(e)});
-  
-
+}
 </script>
 <body class="sub_page">
   <div class="hero_area">
