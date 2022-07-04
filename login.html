@@ -26,7 +26,69 @@
   <!-- my.js for form -->
   <link href="js/my.js" rel="javascript"/>
 </head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDU-Pw5HIZ2hIy38flZj82e3Mv7MJvNw6M",
+    authDomain: "dragonware-fc292.firebaseapp.com",
+    projectId: "dragonware-fc292",
+    storageBucket: "dragonware-fc292.appspot.com",
+    messagingSenderId: "917809028325",
+    appId: "1:917809028325:web:d208c3634ee09fae6c880c",
+    measurementId: "G-BT5GVFCG9Q"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  // import database
+  import {getDatabase, ref, set, get, child, update, remove} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+
+  const db = getDatabase();
+  // console.log(db);
+
+  let dbref = ref(db);
+  let recordNumber = 2;
+
+  get(child(dbref,"quotations/"+recordNumber)).then((snapshot) => {
+    if(snapshot.exists()){
+    var data = snapshot.val();
+      console.log('try: ',recordNumber);
+    // console.log('data',data);
+    // output.innerHTML = data;
+    let output = document.getElementById('row');
+    // console.log(output);
+       
+        var tr = document.createElement('tr');
+        var tdName = document.createElement('td');
+        tdName.innerHTML = data.name;
+        tr.innerHTML = tdName;
+        console.log(tr);
+        
+    output.children[0].innerHTML = recordNumber;
+    output.children[1].innerHTML = data.name;
+    output.children[3].innerHTML = data.phone;
+    output.children[4].innerHTML = data.email;
+    output.children[5].innerHTML = data.budget;
+    output.children[6].innerHTML = data.requirement;
+    output.children[7].innerHTML = data.service;
+    output.children[2].innerHTML = data.description;
+    recordNumber++;
+      let tableBody = document.getElementById('tablebody');
+      tableBody.append(newEntry);
+    } 
+  }).catch((e)=>{console.log(e)});
+  
+
+</script>
 <body class="sub_page">
   <div class="hero_area">
     <!-- header section strats -->
@@ -91,8 +153,32 @@
   </div>
 
   <section style="height: 800px;">
-    <div id="output">
-      Data shows here.
+    <div style="text-align: center;">
+      Contact us data shows here.
+      <table id="table" style="padding: 50px; border: 1px solid black; margin: 100px;">
+        <tbody id="tablebody">
+        <tr>
+          <th width="100px">ID</th>
+          <th width="100px">name</th>
+          <th width="100px">phone</th>
+          <th width="100px">Email</th>
+          <th width="100px">budget</th>
+          <th width="100px">requirements</th>
+          <th width="100px">service</th>
+          <th width="300px">description</td>
+        </tr>
+        <tr id="row">
+          <td width="100px"></td>
+          <td width="100px"></td>
+          <td width="100px"></td>
+          <td width="100px"></td>
+          <td width="100px"></td>
+          <td width="100px"></td>
+          <td width="100px"></td>
+          <td width="300px"></td>
+        </tr>
+      </tbody>
+      </table>
     </div>
   </section>
 
